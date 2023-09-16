@@ -55,8 +55,7 @@ const HomeScreen = () => {
       )}
 
       {/* <Header></Header> */}
-      {/* search state'i diğer componentlerle paylaşabilmek için component olarak kullanmadım */}
-      <View>
+      <ScrollView>
         <View
           style={{
             flexDirection: "row",
@@ -140,7 +139,7 @@ const HomeScreen = () => {
             NewsList={News.slice(7)}
           ></NewsListComp>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

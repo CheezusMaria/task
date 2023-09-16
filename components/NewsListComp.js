@@ -6,6 +6,7 @@ import { FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 const NewsListComp = ({ NewsList, searchState }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const filteredList = NewsList.filter((item) =>
@@ -50,16 +51,11 @@ const NewsListComp = ({ NewsList, searchState }) => {
       )}
 
       <View>
-        <FlatList
-          data={filteredList}
-          contentContainerStyle={{
-            marginTop: 20,
-            marginBottom: 50,
-          }}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => {
+        <ScrollView>
+          {filteredList.map((item, index) => {
             return (
               <View
+                key={index}
                 style={{
                   height: 200,
                   backgroundColor: "white",
@@ -92,6 +88,7 @@ const NewsListComp = ({ NewsList, searchState }) => {
                     </Text>
                   )}
                 </View>
+
                 <View
                   style={{
                     marginTop: 15,
@@ -101,24 +98,21 @@ const NewsListComp = ({ NewsList, searchState }) => {
                     overflow: "hidden",
                   }}
                 >
-                  {/* <TouchableOpacity onPress={() => onItemPressed(item.id)}> */}
                   <Text style={{ width: "60%", fontSize: 14 }}>
                     {item.excerpt}
                   </Text>
-                  {/* </TouchableOpacity> */}
 
                   <Image
                     source={{
                       uri: imgsrc(item),
                     }}
-                    //   resizeMode="contain"
                     style={{
                       width: 100,
                       height: 70,
                     }}
                   />
                 </View>
-                {/* end */}
+
                 <View
                   style={{
                     flexDirection: "row",
@@ -145,7 +139,6 @@ const NewsListComp = ({ NewsList, searchState }) => {
                           ? require("../assets/save.png")
                           : require("../assets/favorite.png")
                       }
-                      //   source={require("../assets/save.png")}
                       resizeMode="cover"
                       style={{
                         width: 25,
@@ -156,8 +149,8 @@ const NewsListComp = ({ NewsList, searchState }) => {
                 </View>
               </View>
             );
-          }}
-        />
+          })}
+        </ScrollView>
       </View>
     </View>
   );

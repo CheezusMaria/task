@@ -106,7 +106,7 @@ const StartupDetail = ({ route }) => {
         />
         <Text>{New.author && New.author.full_name}</Text>
         <View style={{ width: width }}>
-          {/* {New.content && (
+          {New.content && (
             <HTML
               customHTMLElementModels={customHTMLElementModels}
               renderers={renderers}
@@ -115,7 +115,7 @@ const StartupDetail = ({ route }) => {
               ignoredDomNode={(domNode) => domNode.name === "iframe"}
             />
             // <HTML renderers={renderers} source={{ html: New.content }} />
-          )} */}
+          )}
         </View>
       </ScrollView>
     </View>
