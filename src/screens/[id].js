@@ -7,13 +7,14 @@ import {
   FlatList,
   ScrollView,
   useWindowDimensions,
+  SafeAreaView,
 } from "react-native";
 import {
   HTMLElementModel,
   CustomRendererProps,
 } from "react-native-render-html";
 import HTML from "react-native-render-html";
-
+import Header from "../../components/Header";
 import { WebView } from "react-native-webview";
 
 const StartupDetail = ({ route }) => {
@@ -89,36 +90,39 @@ const StartupDetail = ({ route }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={{ height: height, width: width }}>
-        <Image
-          style={{
-            width: 100,
-            height: 100,
-          }}
-          resizeMode="contain"
-          source={{
-            uri:
-              New.author && New.author.avatar
-                ? New.author.avatar
-                : "https://via.placeholder.com/300",
-          }}
-        />
-        <Text>{New.author && New.author.full_name}</Text>
-        <View style={{ width: width }}>
-          {New.content && (
-            <HTML
-              customHTMLElementModels={customHTMLElementModels}
-              renderers={renderers}
-              source={{ html: New.content }}
-              contentWidth={width}
-              ignoredDomNode={(domNode) => domNode.name === "iframe"}
-            />
-            // <HTML renderers={renderers} source={{ html: New.content }} />
-          )}
-        </View>
-      </ScrollView>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Header></Header>
+      <View style={styles.container}>
+        <ScrollView>
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+            }}
+            resizeMode="contain"
+            source={{
+              uri:
+                New.author && New.author.avatar
+                  ? New.author.avatar
+                  : "https://via.placeholder.com/300",
+            }}
+          />
+          <Text>{New.author && New.author.full_name}</Text>
+          <View style={{ width: width }}>
+            <Text>SA</Text>
+            {/* {New.content && (
+              <HTML
+                customHTMLElementModels={customHTMLElementModels}
+                renderers={renderers}
+                source={{ html: New.content }}
+                contentWidth={width}
+                ignoredDomNode={(domNode) => domNode.name === "iframe"}
+              />
+            )} */}
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 

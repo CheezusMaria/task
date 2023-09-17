@@ -11,8 +11,8 @@ import SwiperComp from "../../components/SwiperComp";
 import NewsListComp from "../../components/NewsListComp";
 import { useNavigation } from "@react-navigation/native";
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
+const HomeScreen = ({ navigation }) => {
+  // const navigation = useNavigation();
   const [search, setSearch] = useState(false);
 
   const onSignUpPressed = (newsId) => {
@@ -77,15 +77,14 @@ const HomeScreen = () => {
             }),
           }}
         >
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-            <Image
-              source={require("../../assets/logo.png")}
-              style={{
-                width: 120,
-                height: 30,
-              }}
-            />
-          </TouchableOpacity>
+          <Image
+            source={require("../../assets/logo.png")}
+            style={{
+              width: 120,
+              height: 30,
+            }}
+          />
+
           <View
             style={{
               flexDirection: "row",
@@ -104,7 +103,14 @@ const HomeScreen = () => {
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: "NotificationScreen" }],
+                });
+              }}
+            >
               <Image
                 source={require("../../assets/noti.png")}
                 resizeMode="contain"

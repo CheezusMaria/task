@@ -64,7 +64,14 @@ const Header = ({ showSearchIcon, showNotiIcon }) => {
             </TouchableOpacity>
           ) : null}
           {showNotiIcon ? (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: "NotificationScreen" }],
+                });
+              }}
+            >
               <Image
                 source={require("../assets/noti.png")}
                 resizeMode="contain"

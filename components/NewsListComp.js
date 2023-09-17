@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const NewsListComp = ({ NewsList, searchState }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const filteredList = NewsList.filter((item) =>
@@ -22,9 +23,22 @@ const NewsListComp = ({ NewsList, searchState }) => {
 
   const navigation = useNavigation();
   const [favorite, setFavorite] = useState(false);
-  const sendFavorite = (logid) => {
-    setFavorite(!favorite);
-    // console.log(logid);
+  const sendFavorite = async (logid) => {
+    // try {
+    //   let favorites = await AsyncStorage.getItem("@favorite");
+    //   favorites = favorites == null ? [] : JSON.parse(favorites);
+    //   if (favorites.includes(logid)) {
+    //     const index = favorites.indexOf(logid);
+    //     if (index > -1) {
+    //       favorites.splice(index, 1);
+    //     }
+    //   } else {
+    //     favorites.push(logid);
+    //   }
+    //   await AsyncStorage.setItem("@favorite", JSON.stringify(favorites));
+    // } catch (e) {
+    //   console.error(e);
+    // }
   };
 
   const onItemPressed = (newsId) => {
