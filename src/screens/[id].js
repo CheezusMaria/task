@@ -7,7 +7,11 @@ import {
   FlatList,
   ScrollView,
   useWindowDimensions,
+  TouchableOpacity,
+  Share,
+  Button,
 } from "react-native";
+
 import RenderHtml from "react-native-render-html";
 import { WebView } from "react-native-webview";
 import IframeRenderer, { iframeModel } from "@native-html/iframe-plugin";
@@ -24,6 +28,7 @@ const StartupDetail = ({ route }) => {
 
         if (response.status === 200) {
           var json = await response.json();
+          console.log(json, "gelen id içerik");
           json.content = json.content.replaceAll("data-src", "src");
           setNew(json);
         } else {
@@ -43,6 +48,24 @@ const StartupDetail = ({ route }) => {
 
   const customHTMLElementModels = {
     iframe: iframeModel,
+  };
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: New.url || "Webrazziden Süper bir içerik !",
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
   return (
     <View style={styles.container}>
@@ -87,6 +110,19 @@ const StartupDetail = ({ route }) => {
               {New.author && New.author.full_name}
             </Text>
             <Text style={{ color: "gray" }}>1 Saat önce</Text>
+          </View>
+          <View>
+            <TouchableOpacity onPress={onShare}>
+              <Image
+                source={require("../../assets/share.png")}
+                resizeMode="contain"
+                style={{
+                  marginLeft: 100,
+                  width: 30,
+                  height: 30,
+                }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
         {New.content && (

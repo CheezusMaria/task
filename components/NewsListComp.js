@@ -24,6 +24,7 @@ const NewsListComp = ({ NewsList, searchState }) => {
   const navigation = useNavigation();
   const [favorite, setFavorite] = useState(false);
   const sendFavorite = async (logid) => {
+    setFavorite((prevFavorite) => !prevFavorite);
     // try {
     //   let favorites = await AsyncStorage.getItem("@favorite");
     //   favorites = favorites == null ? [] : JSON.parse(favorites);
@@ -112,19 +113,33 @@ const NewsListComp = ({ NewsList, searchState }) => {
                     overflow: "hidden",
                   }}
                 >
-                  <Text style={{ width: "60%", fontSize: 14 }}>
+                  {/* <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => onItemPressed(item.id)}
+                  > */}
+                  <Text style={{ width: "65%", fontSize: 14 }}>
                     {item.excerpt}
                   </Text>
+                  {/* </TouchableOpacity> */}
 
-                  <Image
-                    source={{
-                      uri: imgsrc(item),
-                    }}
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => onItemPressed(item.id)}
                     style={{
-                      width: 100,
-                      height: 70,
+                      width: "100%",
                     }}
-                  />
+                  >
+                    <Image
+                      source={{
+                        uri: imgsrc(item),
+                      }}
+                      style={{
+                        width: 100,
+                        height: 70,
+                      }}
+                      resizeMode="contain"
+                    />
+                  </TouchableOpacity>
                 </View>
 
                 <View
