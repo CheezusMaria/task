@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ReactNativeZoomableView } from "@openspacelabs/react-native-zoomable-view";
 import {
   View,
   Image,
@@ -125,23 +126,29 @@ const StartupDetail = ({ route }) => {
             </TouchableOpacity>
           </View>
         </View>
-        {New.content && (
-          <RenderHtml
-            renderers={renderers}
-            WebView={WebView}
-            contentWidth={width}
-            source={{ html: New.content }}
-            customHTMLElementModels={customHTMLElementModels}
-            renderersProps={{
-              iframe: {
-                scalesPageToFit: true,
-                webViewProps: {
-                  /* Any prop you want to pass to iframe WebViews */
+        <ReactNativeZoomableView
+          maxZoom={30}
+          contentWidth={300}
+          contentHeight={150}
+        >
+          {New.content && (
+            <RenderHtml
+              renderers={renderers}
+              WebView={WebView}
+              contentWidth={width}
+              source={{ html: New.content }}
+              customHTMLElementModels={customHTMLElementModels}
+              renderersProps={{
+                iframe: {
+                  scalesPageToFit: true,
+                  webViewProps: {
+                    /* Any prop you want to pass to iframe WebViews */
+                  },
                 },
-              },
-            }}
-          />
-        )}
+              }}
+            />
+          )}
+        </ReactNativeZoomableView>
       </ScrollView>
     </View>
   );
