@@ -21,7 +21,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../../context/authContext";
 
 const Profile = () => {
-  // const [Cookie, setCookie] = useState("false");
   const {
     userToken,
     setUserToken,
@@ -75,50 +74,16 @@ const Profile = () => {
       setShowProfile(true);
 
       try {
-        await AsyncStorage.setItem("userToken", userToken); // storing the token in AsyncStorage
+        await AsyncStorage.setItem("userToken", userToken);
       } catch (e) {
         console.error("Failed to save the user token to storage", e);
       }
     } catch (err) {
       setWarningCred(true);
-      console.log(err.message, "error");
+      setTimeout(() => {
+        setWarningCred(false);
+      }, 2000);
     }
-    // try {
-    //   const storedEmail = await AsyncStorage.getItem("user_email");
-    //   const storedPassword = await AsyncStorage.getItem("user_password");
-    //   const storedFullName = await AsyncStorage.getItem("full_name");
-    //   console.log(
-    //     storedEmail,
-    //     storedPassword,
-    //     "data coming from local storage"
-    //   );
-    //   if (!storedEmail || !storedPassword) {
-    //     console.log("No stored data");
-    //     setWarning(true);
-    //     setTimeout(() => {
-    //       setWarning(false);
-    //     }, 2000);
-    //   } else if (email === storedEmail && password === storedPassword) {
-    //     // const token = Math.random().toString(36).substring(2, 15);
-    //     // await AsyncStorage.setItem("@login_token", token);
-    //     setCookie("true");
-    //     const settedCookie = await AsyncStorage.setItem("cookie", "true");
-
-    //     setUserFullName(storedFullName);
-    //     setUserEmailAdress(storedEmail);
-
-    //     console.log("User successfully signed in");
-    //   } else {
-    //     setCookie(false);
-    //     console.log("Invalid login credentials.");
-    //     setWarningCred(true);
-    //     setTimeout(() => {
-    //       setWarningCred(false);
-    //     }, 2000);
-    //   }
-    // } catch (e) {
-    //   console.log("error", e);
-    // }
   };
 
   return (
@@ -176,16 +141,7 @@ const Profile = () => {
                 value={UserEmailAdress}
                 editable={false}
               />
-              {/* <Text style={{ marginVertical: 3 }}>Adı Soyadı</Text>
 
-              <TextInput
-                style={styles.input}
-                selectionColor={theme.colors.primary}
-                underlineColor="transparent"
-                mode="outlined"
-                value={UserFullName}
-                editable={false}
-              /> */}
               <Button
                 onPress={async () => {
                   try {

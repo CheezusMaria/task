@@ -116,10 +116,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   labelContainer: {
-    width: "30%", // adjust according to your needs
+    width: "30%",
   },
   infoContainer: {
-    width: "70%", // adjust according to your needs
+    width: "70%",
   },
 });
 export default ContactUs;

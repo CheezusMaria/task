@@ -113,14 +113,9 @@ const NewsListComp = ({ NewsList, searchState }) => {
                     overflow: "hidden",
                   }}
                 >
-                  {/* <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => onItemPressed(item.id)}
-                  > */}
                   <Text style={{ width: "65%", fontSize: 14 }}>
                     {item.excerpt}
                   </Text>
-                  {/* </TouchableOpacity> */}
 
                   <TouchableOpacity
                     activeOpacity={0.7}
@@ -164,7 +159,7 @@ const NewsListComp = ({ NewsList, searchState }) => {
                   <TouchableOpacity onPress={() => sendFavorite(item.id)}>
                     <Image
                       source={
-                        favorite
+                        !favorite
                           ? require("../assets/save.png")
                           : require("../assets/favorite.png")
                       }

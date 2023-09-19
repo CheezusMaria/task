@@ -12,7 +12,6 @@ import NewsListComp from "../../components/NewsListComp";
 import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = ({ navigation }) => {
-  // const navigation = useNavigation();
   const [search, setSearch] = useState(false);
 
   const onSignUpPressed = (newsId) => {
@@ -20,7 +19,6 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const [News, setNews] = useState([]);
-  // const [Images, setImages] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -35,7 +33,6 @@ const HomeScreen = ({ navigation }) => {
         // console.log(json.data.thumbnails);
       } else {
         setNews([]);
-        // setImages([]);
       }
     }
 

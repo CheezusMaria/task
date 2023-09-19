@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import Header from "../../components/Header";
 import { SafeAreaView } from "react-native";
-import { emailValidator, inputValidator } from "../../helpers/validators";
 import TextInput from "../../components/TextInput";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
