@@ -16,7 +16,9 @@ import NotificationScreen from "./src/screens/Notification";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+// import useAuth from "./hooks/useAuth"
 export default function App() {
+  // const {user} = useAuth();
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   const Drawer = createDrawerNavigator();
