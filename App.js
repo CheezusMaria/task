@@ -16,6 +16,7 @@ import NotificationScreen from "./src/screens/Notification";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AuthProvider } from "./context/authContext";
 // import useAuth from "./hooks/useAuth"
 export default function App() {
   // const {user} = useAuth();
@@ -90,25 +91,30 @@ export default function App() {
     );
   }
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <Drawer.Navigator screenOptions={{ headerShown: false }}>
-          <Drawer.Screen name="Haberler" component={StackNav} />
-          <Drawer.Screen name="İletişim" component={ContactUs} />
-          <Drawer.Screen name="Girişim Başvurusu" component={EntApplication} />
-          <Drawer.Screen
-            name="NotificationScreen"
-            component={NotificationScreen}
-          />
-        </Drawer.Navigator>
-        {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <AuthProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <Drawer.Navigator screenOptions={{ headerShown: false }}>
+            <Drawer.Screen name="Haberler" component={StackNav} />
+            <Drawer.Screen name="İletişim" component={ContactUs} />
+            <Drawer.Screen
+              name="Girişim Başvurusu"
+              component={EntApplication}
+            />
+            <Drawer.Screen
+              name="NotificationScreen"
+              component={NotificationScreen}
+            />
+          </Drawer.Navigator>
+          {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Main" component={BottomMenu} />
           <Stack.Screen name="NewsDetail" component={NewsDetail} />
           <Stack.Screen name="ContactUs" component={ContactUs} />
           <Stack.Screen name="EntApplication" component={EntApplication} />
         </Stack.Navigator> */}
-      </NavigationContainer>
-    </GestureHandlerRootView>
+        </NavigationContainer>
+      </GestureHandlerRootView>
+    </AuthProvider>
   );
 }
 
